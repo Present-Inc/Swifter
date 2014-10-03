@@ -463,14 +463,14 @@ public extension Swifter {
             }, failure: failure)
     }
 
-    public func getFriendsListWithScreenName(screenName: String, cursor: Int?, count: Int?, skipStatus: Bool?, includeUserEntities: Bool?, success: ((users: [JSONValue]?, previousCursor: Int?, nextCursor: Int?) -> Void)?, failure: FailureHandler?) {
+    public func getFriendsListWithScreenName(screenName: String, cursor: String?, count: Int?, skipStatus: Bool?, includeUserEntities: Bool?, success: ((users: [JSONValue]?, previousCursor: String?, nextCursor: String?) -> Void)?, failure: FailureHandler?) {
         let path = "friends/list.json"
 
         var parameters = Dictionary<String, AnyObject>()
         parameters["screen_name"] = screenName
 
         if cursor != nil {
-            parameters["cursor"] = cursor!
+            parameters["cursor"] = cursor
         }
         if count != nil {
             parameters["count"] = count!
@@ -484,8 +484,14 @@ public extension Swifter {
 
         self.getJSONWithPath(path, baseURL: self.apiURL, parameters: parameters, uploadProgress: nil, downloadProgress: nil, success: {
             json, response in
-
-            switch (json["users"].array, json["previous_cursor"].integer, json["next_cursor"].integer) {
+            
+            var previousCursorString: String? = json["previous_cursor_str"].string
+            var nextCursorString: String? = json["next_cursor_str"].string
+            
+            println("Previous cursor string: \(previousCursorString)")
+            println("Next cursor string: \(nextCursorString)")
+            
+            switch (json["users"].array, previousCursorString, nextCursorString) {
             case (let users, let previousCursor, let nextCursor):
                 success?(users: users, previousCursor: previousCursor, nextCursor: nextCursor)
             default:
