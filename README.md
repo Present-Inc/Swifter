@@ -1,5 +1,5 @@
 <p align="center" >
-  <img src="swifter_logo.png" alt="Swifter" title="Swifter" width="692">
+  <img src="swifter_logo.png" alt="Swifter" title="Swifter" width="538">
 </p>
 
 ## Getting Started
@@ -7,8 +7,6 @@
 ###Installation
 
 If you're using Xcode 6, Swifter can be installed by simply dragging the Swifter Xcode project into your own project and adding either the SwifteriOS or SwifterMac framework as an embedded framework.
-
-**Note: If you're using Xcode 6.1, be sure to use the beta6-1 branch.**
 
 ###Usage
 
