@@ -24,6 +24,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CommonCrypto/CommonCrypto.h>
 
 FOUNDATION_EXPORT double SwifterVersionNumber;
 
